@@ -42,15 +42,16 @@
     Text = ("Remove")
   }
   { Label2 Label
-    MoveScaled(1,33,43,5)
+    MoveScaled(1,33,23,5)
     Font = Font["Bold,12"]
     Text = ("Convert to")
   }
   { cboConvertType ComboBox
-    MoveScaled(1,38,82,5)
+    MoveScaled(1,38,23,5)
+    #Translate = False
     ReadOnly = True
-    List = [("WEBP"), ("PNG"), ("JPG")]
-    Text = ("WEBP")
+    List = ["WEBP", "PNG", "JPG", "BMP", "ICO", "XCF", "PSD", "SVG", "PDF", "JSON"]
+    Text = "WEBP"
   }
   { lblInfo Label
     MoveScaled(1,52,81,3)
@@ -66,5 +67,38 @@
     Font = Font["Bold,9"]
     Alignment = Align.Center
     Text = ("Support MIConvertImage")
+  }
+  { Label1 Label
+    MoveScaled(25,33,23,5)
+    Font = Font["Bold,12"]
+    Text = ("Quality (%)")
+  }
+  { Label3 Label
+    MoveScaled(49,33,23,5)
+    Font = Font["Bold,12"]
+    Text = ("Size (WxH)")
+  }
+  { txtQualidade ValueBox
+    MoveScaled(25,38,23,5)
+    #Translate = False
+    Text = "90"
+  }
+  { txtWidth ValueBox
+    MoveScaled(49,38,10,5)
+    #Translate = False
+  }
+  { txtHeight ValueBox
+    MoveScaled(62,38,10,5)
+    #Translate = False
+  }
+  { Label4 Label
+    MoveScaled(60,39,3,4)
+    #Translate = False
+    Text = "x"
+  }
+  { Label5 Label
+    MoveScaled(73,40,8,3)
+    #Translate = False
+    Text = "px"
   }
 }

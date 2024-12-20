@@ -60,29 +60,39 @@ Public Sub btnRemover_Click()
   Dim i As Integer = 0
   Dim sPath As String = ""
   Dim sInfo As String = ""
+  Dim sSize As String = ""
   
+  btnRemover.Enabled = False
   lstInfo.Clear()
   lblInfo.Text = ""
+  If txtQualidade.Value > 100 Then 
+    txtQualidade.Value = 100
+  Endif
   If lstArquivos.Count > 0 Then 
     For Each row As String In lstArquivos.Keys
       lblInfo.Text = Subst(("Converting &1..."), File.Name(row))
-      Wait 1      
-      If cboConvertType.Index = 0 Then 
-        sPath = File.Dir(row) & "/" & File.BaseName(row) & ".webp"
-        Shell "convert \"" & row & "\" -quality 80 convert \"" & sPath & "\"" Wait To sInfo
-      Else If cboConvertType.Index = 1 Then 
-        sPath = File.Dir(row) & "/" & File.BaseName(row) & ".png"
-        Shell "convert \"" & row & "\" -quality 80 convert \"" & sPath & "\"" Wait To sInfo
+      Wait 1
+      If txtWidth.Value = 0 And txtHeight.Value = 0 Then 
       Else 
-        sPath = File.Dir(row) & "/" & File.BaseName(row) & ".jpg"
-        Shell "convert \"" & row & "\" -quality 80 convert \"" & sPath & "\"" Wait To sInfo
-      Endif 
+        If txtWidth.Value > 0 Then
+          sSize = txtWidth.Value
+        Endif
+        sSize &= "x"
+        If txtHeight.Value > 0 Then 
+          sSize &= txtHeight.Value
+        Endif
+      Endif
       
-      'If cboArquivoOriginal.Index = 0 Then 
-      '  If Exist(row & "_original") Then 
-      '    Try Kill row & "_original"
-      '  Endif
-      'Endif 
+      If sSize <> "" Then 
+        sSize = " -resize " & sSize
+        
+        If txtWidth.Value > 0 And txtHeight.Value > 0 Then 
+          sSize &= "!"
+        Endif
+      Endif
+      
+      sPath = File.Dir(row) & "/" & File.BaseName(row) & "." & Lower(cboConvertType.Text)
+      Shell "convert \"" & row & "\"" & sSize & " -quality " & txtQualidade.Value & " convert \"" & sPath & "\"" Wait To sInfo
       
       lstInfo.Add(i, Trim(row))
       
@@ -98,6 +108,8 @@ Public Sub btnRemover_Click()
     lblInfo.Text = ("Completed!")
   Endif 
   
+  btnRemover.Enabled = True
+  
 End
 
 Public Sub btnRemoverTodosItens_Click()
@@ -107,7 +119,7 @@ Public Sub btnRemoverTodosItens_Click()
 End
 
 Public Sub URLLabel1_Click()
-
+  
   mnuApoie_Click
-
+  
 End
