@@ -1,0 +1,95 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: miconvertimage 3.18.0\n"
+"PO-Revision-Date: 2024-12-20 00:36 UTC\n"
+"Last-Translator: Murilo Gomes Julio <contatomestredainfo@gmail.com>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: FMain.form:26
+msgid "About"
+msgstr "Sobre"
+
+#: FMain.form:36
+msgid "About MIConvertImage"
+msgstr "Sobre MIConvertImage"
+
+#: FMain.form:60
+msgid "Add Files"
+msgstr "Adicionar arquivos"
+
+#: FMain.class:98
+msgid "Completed!"
+msgstr "Concluído!"
+
+#: FMain.form:43
+msgid "Convert"
+msgstr "Converter"
+
+#: FMain.class:90
+msgid "Converted file"
+msgstr "Arquivo convertido"
+
+#: FMain.class:68
+msgid "Converting &1..."
+msgstr "Convertendo &1..."
+
+#: .project:2
+msgid "Converts images into different formats."
+msgstr "Converte imagens em diferentes formatos."
+
+#: FMain.form:72
+msgid "Convert to"
+msgstr "Converter para"
+
+#: FMain.class:92
+msgid "File not converted"
+msgstr "Arquivo não convertido"
+
+# gb-ignore
+#: FMain.form:77
+msgid "JPG"
+msgstr ""
+
+# gb-ignore
+#: .project:1 FAbout.form:17 FMain.form:22
+msgid "MIConvertImage"
+msgstr ""
+
+#: FMain.class:51
+msgid "Name"
+msgstr "Nome"
+
+# gb-ignore
+#: FMain.form:77
+msgid "PNG"
+msgstr ""
+
+#: FMain.form:66
+msgid "Remove"
+msgstr "Remover"
+
+#: FMain.form:89
+msgid "Remove All"
+msgstr "Remover Tudo"
+
+#: FMain.class:23
+msgid "Select File"
+msgstr "Selecione o arquivo"
+
+#: FMain.form:29
+msgid "Support MIConvertImage"
+msgstr "Apoie MIConvertImage"
+
+#: FMain.class:53
+msgid "Value"
+msgstr "Valor"
+
+# gb-ignore
+#: FMain.form:77
+msgid "WEBP"
+msgstr ""
+

@@ -1,0 +1,113 @@
+' Gambas class file
+
+' Copyright (C) 2004-2024 Murilo Gomes Julio
+' SPDX-License-Identifier: GPL-2.0-only
+
+' Mestre da Info
+' Site: https://www.mestredainfo.com.br
+
+Public Sub mnuApoie_Click()
+  
+  Shell "xdg-open \"https://www.mestredainfo.com.br/p/apoie.html\""
+  
+End
+
+Public Sub mnuSobre_Click()
+  
+  FAbout.Show()
+  
+End
+
+Public Sub txtArquivo_Click()
+  
+  Dialog.Title = ("Select File")
+  
+End
+
+Public Sub btnRemoverItens_Click()
+  
+  If lstArquivos.Selection.Count > 0 Then 
+    For Each row As String In lstArquivos.Selection 
+      lstArquivos.Remove(row)
+    Next
+  Endif 
+  
+End
+
+Public Sub btnAddFiles_Click()
+  
+  Dialog.Title = ("Select File")
+  If Dialog.OpenFile(True) = False Then 
+    For Each row As String In Dialog.Paths 
+      Try lstArquivos.Add(row, row)
+    Next
+  Endif
+  
+End
+
+Public Sub Form_Open()
+  
+  lstInfo.Columns.Count = 2
+  lstInfo.Columns[0].Text = ("Name")
+  lstInfo.Columns[0].Width = 100
+  lstInfo.Columns[1].Text = ("Value")
+  lstInfo.Header = True
+  
+End
+
+Public Sub btnRemover_Click()
+  
+  Dim i As Integer = 0
+  Dim sPath As String = ""
+  Dim sInfo As String = ""
+  
+  lstInfo.Clear()
+  lblInfo.Text = ""
+  If lstArquivos.Count > 0 Then 
+    For Each row As String In lstArquivos.Keys
+      lblInfo.Text = Subst(("Converting &1..."), File.Name(row))
+      Wait 1      
+      If cboConvertType.Index = 0 Then 
+        sPath = File.Dir(row) & "/" & File.BaseName(row) & ".webp"
+        Shell "convert \"" & row & "\" -quality 80 convert \"" & sPath & "\"" Wait To sInfo
+      Else If cboConvertType.Index = 1 Then 
+        sPath = File.Dir(row) & "/" & File.BaseName(row) & ".png"
+        Shell "convert \"" & row & "\" -quality 80 convert \"" & sPath & "\"" Wait To sInfo
+      Else 
+        sPath = File.Dir(row) & "/" & File.BaseName(row) & ".jpg"
+        Shell "convert \"" & row & "\" -quality 80 convert \"" & sPath & "\"" Wait To sInfo
+      Endif 
+      
+      'If cboArquivoOriginal.Index = 0 Then 
+      '  If Exist(row & "_original") Then 
+      '    Try Kill row & "_original"
+      '  Endif
+      'Endif 
+      
+      lstInfo.Add(i, Trim(row))
+      
+      If Exist(sPath) Then 
+        lstInfo[i][1] = ("Converted file")
+      Else 
+        lstInfo[i][1] = ("File not converted")
+      Endif
+      
+      Inc i
+    Next
+    
+    lblInfo.Text = ("Completed!")
+  Endif 
+  
+End
+
+Public Sub btnRemoverTodosItens_Click()
+  
+  lstArquivos.Clear()
+  
+End
+
+Public Sub URLLabel1_Click()
+
+  mnuApoie_Click
+
+End
