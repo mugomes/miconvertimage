@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: miconvertimage 3.18.0\n"
-"POT-Creation-Date: 2024-12-20 00:51 UTC\n"
-"PO-Revision-Date: 2024-12-20 00:36 UTC\n"
+"POT-Creation-Date: 2024-12-20 16:26 UTC\n"
+"PO-Revision-Date: 2024-12-20 16:26 UTC\n"
 "Last-Translator: Murilo Gomes Julio <contatomestredainfo@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -11,13 +11,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 # gb-ignore
-#: .project:1 FAbout.form:17 FMain.form:22
+#: .project:1 FAbout.form:17 FMain.form:29
 msgid "MIConvertImage"
 msgstr ""
 
 #: .project:2
-msgid "Converts images into different formats."
-msgstr "Converte imagens em diferentes formatos."
+msgid ""
+"Converts images into different formats.\n"
+"The MIConvertImage is under license GPL-2.0-only"
+msgstr ""
+"Converts images into different formats.\n"
+"The MIConvertImage is under license GPL-2.0-only-"
 
 #: FMain.class:23
 msgid "Select File"
@@ -31,65 +35,58 @@ msgstr "Nome"
 msgid "Value"
 msgstr "Valor"
 
-#: FMain.class:68
+#: FMain.class:73
 msgid "Converting &1..."
 msgstr "Convertendo &1..."
 
-#: FMain.class:90
+#: FMain.class:106
 msgid "Converted file"
 msgstr "Arquivo convertido"
 
-#: FMain.class:92
+#: FMain.class:108
 msgid "File not converted"
 msgstr "Arquivo não convertido"
 
-#: FMain.class:98
+#: FMain.class:114
 msgid "Completed!"
 msgstr "Concluído!"
 
-#: FMain.form:27
+#: FMain.form:34
 msgid "About"
 msgstr "Sobre"
 
-#: FMain.form:30
+#: FMain.form:37
 msgid "Support MIConvertImage"
 msgstr "Apoie MIConvertImage"
 
-#: FMain.form:37
+#: FMain.form:44
 msgid "About MIConvertImage"
 msgstr "Sobre MIConvertImage"
 
-#: FMain.form:44
+#: FMain.form:51
 msgid "Convert"
 msgstr "Converter"
 
-#: FMain.form:61
+#: FMain.form:68
 msgid "Add Files"
 msgstr "Adicionar arquivos"
 
-#: FMain.form:67
+#: FMain.form:74
 msgid "Remove"
 msgstr "Remover"
 
-#: FMain.form:73
+#: FMain.form:80
 msgid "Convert to"
 msgstr "Converter para"
 
-# gb-ignore
-#: FMain.form:78
-msgid "JPG"
-msgstr ""
-
-# gb-ignore
-#: FMain.form:78
-msgid "PNG"
-msgstr ""
-
-# gb-ignore
-#: FMain.form:78
-msgid "WEBP"
-msgstr ""
-
-#: FMain.form:90
+#: FMain.form:98
 msgid "Remove All"
 msgstr "Remover Tudo"
+
+#: FMain.form:111
+msgid "Quality (%)"
+msgstr "Qualidade (%)"
+
+#: FMain.form:117
+msgid "Size (WxH)"
+msgstr "Tamanho (LxA)"
