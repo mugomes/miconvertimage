@@ -86,9 +86,13 @@ Public Sub btnRemover_Click()
       If sSize <> "" Then 
         sSize = " -resize " & sSize
         
-        If txtWidth.Value > 0 And txtHeight.Value > 0 Then 
+        If chkAjusteAutomatico.Value = False Then 
           sSize &= "!"
-        Endif
+        Else 
+          If txtWidth.Value > 0 And txtHeight.Value > 0 Then 
+            sSize &= "!"
+          Endif
+        Endif 
       Endif
       
       sPath = File.Dir(row) & "/" & File.BaseName(row) & "." & Lower(cboConvertType.Text)

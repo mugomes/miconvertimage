@@ -96,9 +96,10 @@
     #Translate = False
     Text = "x"
   }
-  { Label5 Label
-    MoveScaled(73,40,8,3)
+  { chkAjusteAutomatico CheckBox
+    MoveScaled(73,39,4,4)
     #Translate = False
-    Text = "px"
+    Text = " "
+    Value = CheckBox.True
   }
 }
