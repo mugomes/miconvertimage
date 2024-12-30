@@ -47,6 +47,11 @@ End
 
 Public Sub Form_Open()
   
+  If Exist("/usr/bin/convert") = False Then 
+    Message.Error(("<b>imagemagick</b> not found!"))
+    Quit
+  Endif
+  
   lstInfo.Columns.Count = 2
   lstInfo.Columns[0].Text = ("Name")
   lstInfo.Columns[0].Width = 100
@@ -126,4 +131,10 @@ Public Sub URLLabel1_Click()
   
   mnuApoie_Click
   
+End
+
+Public Sub mnuCheckUpdate_Click()
+
+  Shell "xdg-open \"https://www.mestredainfo.com.br/2024/12/miconvertimage.html\""
+
 End

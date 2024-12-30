@@ -2,38 +2,46 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: miconvertimage 3.18.0\n"
-"PO-Revision-Date: 2024-12-20 16:26 UTC\n"
-"Last-Translator: Murilo Gomes Julio <contatomestredainfo@gmail.com>\n"
+"PO-Revision-Date: 2024-12-30 20:35 UTC\n"
+"Last-Translator: Mestre da Info <contatomestredainfo@gmail.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: FMain.form:34
+#: FMain.class:51
+msgid "<b>imagemagick</b> does not exist!"
+msgstr "<b>imagemagick</b> não existe!"
+
+#: FMain.form:36
 msgid "About"
 msgstr "Sobre"
 
-#: FMain.form:44
+#: FMain.form:53
 msgid "About MIConvertImage"
 msgstr "Sobre MIConvertImage"
 
-#: FMain.form:68
+#: FMain.form:77
 msgid "Add Files"
 msgstr "Adicionar arquivos"
 
-#: FMain.class:114
+#: FMain.form:39
+msgid "Check Update"
+msgstr "Verificar Atualizações"
+
+#: FMain.class:115
 msgid "Completed!"
 msgstr "Concluído!"
 
-#: FMain.form:51
+#: FMain.form:60
 msgid "Convert"
 msgstr "Converter"
 
-#: FMain.class:106
+#: FMain.class:107
 msgid "Converted file"
 msgstr "Arquivo convertido"
 
-#: FMain.class:73
+#: FMain.class:76
 msgid "Converting &1..."
 msgstr "Convertendo &1..."
 
@@ -41,32 +49,32 @@ msgstr "Convertendo &1..."
 msgid "Converts images into different formats.\nThe MIConvertImage is under license GPL-2.0-only"
 msgstr "Converts images into different formats.\nThe MIConvertImage is under license GPL-2.0-only"
 
-#: FMain.form:80
+#: FMain.form:89
 msgid "Convert to"
 msgstr "Converter para"
 
-#: FMain.class:108
+#: FMain.class:109
 msgid "File not converted"
 msgstr "Arquivo não convertido"
 
 # gb-ignore
-#: .project:1 FAbout.form:17 FMain.form:29
+#: .project:1 FAbout.form:17 FMain.form:31
 msgid "MIConvertImage"
 msgstr ""
 
-#: FMain.class:51
+#: FMain.class:54
 msgid "Name"
 msgstr "Nome"
 
-#: FMain.form:111
+#: FMain.form:120
 msgid "Quality (%)"
 msgstr "Qualidade (%)"
 
-#: FMain.form:74
+#: FMain.form:83
 msgid "Remove"
 msgstr "Remover"
 
-#: FMain.form:98
+#: FMain.form:107
 msgid "Remove All"
 msgstr "Remover Tudo"
 
@@ -74,15 +82,15 @@ msgstr "Remover Tudo"
 msgid "Select File"
 msgstr "Selecione o arquivo"
 
-#: FMain.form:117
+#: FMain.form:126
 msgid "Size (WxH)"
 msgstr "Tamanho (LxA)"
 
-#: FMain.form:37
+#: FMain.form:46
 msgid "Support MIConvertImage"
 msgstr "Apoie MIConvertImage"
 
-#: FMain.class:53
+#: FMain.class:56
 msgid "Value"
 msgstr "Valor"
 

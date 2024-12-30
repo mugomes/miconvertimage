@@ -8,6 +8,11 @@
   Resizable = False
   { Menu1 Menu
     Text = ("About")
+    { mnuCheckUpdate Menu
+      Text = ("Check Update")
+    }
+    { Menu2 Menu
+    }
     { mnuApoie Menu
       Text = ("Support MIConvertImage")
     }
