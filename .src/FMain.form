@@ -55,7 +55,7 @@
     MoveScaled(1,38,23,5)
     #Translate = False
     ReadOnly = True
-    List = ["WEBP", "PNG", "JPG", "BMP", "ICO", "XCF", "PSD", "SVG", "PDF", "JSON"]
+    List = ["WEBP", "PNG", "JPG", "ICO", "SVG", "PDF"]
     Text = "WEBP"
   }
   { lblInfo Label
