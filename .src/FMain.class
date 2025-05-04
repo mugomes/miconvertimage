@@ -135,6 +135,6 @@ End
 
 Public Sub mnuCheckUpdate_Click()
 
-  Shell "xdg-open \"https://www.mestredainfo.com.br/p/softwares.html\""
+  Shell "xdg-open \"https://www.mestredainfo.com.br/p/miconvertimage.html\""
 
 End

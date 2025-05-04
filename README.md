@@ -4,7 +4,7 @@ Converts images into different formats.
 
 ## Information
 
-- [Page MIConvertImage](https://www.mestredainfo.com.br/p/softwares.html)
+- [Page MIConvertImage](https://www.mestredainfo.com.br/p/miconvertimage.html)
 
 ## License
 
