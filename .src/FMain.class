@@ -1,14 +1,13 @@
 ' Gambas class file
 
-' Copyright (C) 2004-2025 Murilo Gomes Julio
+' Copyright (C) 2025 Murilo Gomes Julio
 ' SPDX-License-Identifier: GPL-2.0-only
 
-' Mestre da Info
-' Site: https://www.mestredainfo.com.br
+' Site: https://www.mugomes.com.br
 
 Public Sub mnuApoie_Click()
   
-  Shell "xdg-open \"https://www.mestredainfo.com.br/p/apoie.html\""
+  Shell "xdg-open \"https://www.mugomes.com.br/p/assinantes.html\""
   
 End
 
@@ -135,6 +134,6 @@ End
 
 Public Sub mnuCheckUpdate_Click()
 
-  Shell "xdg-open \"https://www.mestredainfo.com.br/p/miconvertimage.html\""
+  Shell "xdg-open \"https://www.mugomes.com.br/2025/07/miconvertimage.html\""
 
 End

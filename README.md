@@ -1,17 +1,17 @@
-# MIConvertImage
+# MiConvertImage
 
 Converts images into different formats.
 
 ## Information
 
-- [Page MIConvertImage](https://www.mestredainfo.com.br/p/miconvertimage.html)
+- [Page MiConvertImage](https://www.mugomes.com.br/2025/07/miconvertimage.html)
 
 ## License
 
-The MIConvertImage is provided under:
+The MiConvertImage is provided under:
 
 [SPDX-License-Identifier: GPL-2.0-only](https://spdx.org/licenses/GPL-2.0-only.html)
 
 Beign under the terms of the GNU General Public License version 2 only.
 
-All contributions to the MIConvertImage are subject to this license.
+All contributions to the MiConvertImage are subject to this license.

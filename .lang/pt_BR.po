@@ -1,17 +1,17 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: miconvertimage 3.18.0\n"
-"PO-Revision-Date: 2024-12-30 20:35 UTC\n"
-"Last-Translator: Mestre da Info <contatomestredainfo@gmail.com>\n"
+"Project-Id-Version: miconvertimage 3.19.0\n"
+"PO-Revision-Date: 2025-07-14 16:53 UTC\n"
+"Last-Translator: Murilo Gomes <mugomesoficial@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: FMain.class:51
-msgid "<b>imagemagick</b> does not exist!"
-msgstr "<b>imagemagick</b> não existe!"
+#: FMain.class:50
+msgid "<b>imagemagick</b> not found!"
+msgstr "<b>imagemagick </b> não encontrado!"
 
 #: FMain.form:36
 msgid "About"
@@ -29,7 +29,7 @@ msgstr "Adicionar arquivos"
 msgid "Check Update"
 msgstr "Verificar Atualizações"
 
-#: FMain.class:115
+#: FMain.class:116
 msgid "Completed!"
 msgstr "Concluído!"
 
@@ -37,32 +37,33 @@ msgstr "Concluído!"
 msgid "Convert"
 msgstr "Converter"
 
-#: FMain.class:107
+#: FMain.class:108
 msgid "Converted file"
 msgstr "Arquivo convertido"
 
-#: FMain.class:76
+#: FMain.class:77
 msgid "Converting &1..."
 msgstr "Convertendo &1..."
 
+# gb-ignore
 #: .project:2
 msgid "Converts images into different formats.\nThe MIConvertImage is under license GPL-2.0-only"
-msgstr "Converts images into different formats.\nThe MIConvertImage is under license GPL-2.0-only-"
+msgstr ""
 
 #: FMain.form:89
 msgid "Convert to"
 msgstr "Converter para"
 
-#: FMain.class:109
+#: FMain.class:110
 msgid "File not converted"
 msgstr "Arquivo não convertido"
 
 # gb-ignore
-#: .project:1 FAbout.form:17 FMain.form:31
+#: .project:1 FMain.form:31
 msgid "MIConvertImage"
 msgstr ""
 
-#: FMain.class:54
+#: FMain.class:55
 msgid "Name"
 msgstr "Nome"
 
@@ -78,7 +79,7 @@ msgstr "Remover"
 msgid "Remove All"
 msgstr "Remover Tudo"
 
-#: FMain.class:23
+#: FMain.class:22
 msgid "Select File"
 msgstr "Selecione o arquivo"
 
@@ -87,10 +88,14 @@ msgid "Size (WxH)"
 msgstr "Tamanho (LxA)"
 
 #: FMain.form:46
+msgid "Subscribers"
+msgstr "Assinantes"
+
+#: FMain.form:114
 msgid "Support MIConvertImage"
 msgstr "Apoie MIConvertImage"
 
-#: FMain.class:56
+#: FMain.class:57
 msgid "Value"
 msgstr "Valor"
 
