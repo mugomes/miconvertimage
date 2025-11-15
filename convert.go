@@ -33,7 +33,7 @@ func (s *sDados) showConvert(a fyne.App) {
 	lblStatus.Move(fyne.NewPos(7, lblInfo.Position().Y+34))
 
 	sHeader := []string{"Arquivo", "Informação"}
-	sWidths := []float32{300,300}
+	sWidths := []float32{500,200}
 	lstFiles := mgcolumnview.NewColumnView(sHeader, sWidths, false)
 	lstFiles.Resize(fyne.NewSize(w.Canvas().Size().Width-7, w.Canvas().Size().Height-7))
 	lstFiles.Move(fyne.NewPos(7, lblStatus.Position().Y+38))
