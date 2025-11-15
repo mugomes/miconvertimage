@@ -14,10 +14,13 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
-	"fyne.io/fyne/v2/storage"
+
+	// "fyne.io/fyne/v2/storage"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/mugomes/mgcolumnview"
+	"github.com/mugomes/mgdialogopenfile"
+	"github.com/mugomes/mgnumericentry"
 )
 
 const VERSION_APP string = "2.0.0"
@@ -70,33 +73,30 @@ func main() {
 	w.SetMainMenu(fyne.NewMainMenu(mnuAbout))
 
 	headers := []string{"Arquivo"}
-	sWidths := []float32{30,400}
+	sWidths := []float32{30, w.Canvas().Size().Width - 7}
 	data := [][]string{}
 
 	cv := mgcolumnview.NewColumnView(headers, sWidths, true)
 
 	btnAddFile := widget.NewButton("Add Imagem", func() {
-		fd := dialog.NewFileOpen(func(r fyne.URIReadCloser, err error) {
-			if err != nil || r == nil {
-				return
-			}
+		fs := mgdialogopenfile.New(a, "Abrir Arquivo", []string{".webp", ".jpg", ".png"}, true, func(filenames []string) {
+			for _, filename := range filenames {
+				ext := filepath.Ext(filename)
+				if ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".webp" {
+					data = append(data, []string{
+						fmt.Sprintf("%d", len(data)+1),
+						filename,
+					})
+					cv.AddRow([]string{
+						filename,
+					})
+				} else {
+					dialog.ShowInformation("MiCheckHash", "Formato Inválido! Somente arquivos PNG, JPG ou WEBP são aceitos.", w)
+				}
 
-			ext := filepath.Ext(r.URI().Path())
-			if ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".webp" {
-				data = append(data, []string{
-					fmt.Sprintf("%d", len(data)+1),
-					r.URI().Path(),
-				})
-				cv.AddRow([]string{
-					r.URI().Path(),
-				})
-			} else {
-				dialog.ShowInformation("MiCheckHash", "Formato Inválido! Somente arquivos PNG, JPG ou WEBP são aceitos.", w)
 			}
-		}, w)
-
-		fd.SetFilter(storage.NewExtensionFileFilter([]string{".png", ".jpg", ".jpeg", ".webp"}))
-		fd.Show()
+		})
+		fs.Show()
 	})
 	btnAddFile.Resize(fyne.NewSize(137, 30))
 	btnAddFile.Move(fyne.NewPos(7, 7))
@@ -115,7 +115,7 @@ func main() {
 
 	cv.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 300))
 	cv.Move(fyne.NewPos(0, btnAddFile.Position().Y+37))
-	
+
 	lblFormat := widget.NewLabel("Formatos")
 	lblFormat.TextStyle = fyne.TextStyle{Bold: true}
 	lblFormat.Resize(fyne.NewSize(137, 30))
@@ -125,12 +125,34 @@ func main() {
 	cboFormat.Resize(fyne.NewSize(137, 38))
 	cboFormat.Move(fyne.NewPos(7, lblFormat.Position().Y+37))
 
+	lblQualidade := widget.NewLabel("Qualidade")
+	lblQualidade.TextStyle = fyne.TextStyle{Bold: true}
+	lblQualidade.Move(fyne.NewPos(cboFormat.Size().Width+17, cv.Position().Y+300))
+	txtQualidade := mgnumericentry.NewMGNumericEntryWithButtons(0, 100, 90)
+	txtQualidade.Resize(fyne.NewSize(100, 38))
+	txtQualidade.Move(fyne.NewPos(cboFormat.Size().Width+17, lblQualidade.Position().Y+37))
+	
+	// lblTamanho := widget.NewLabel("Tamanho")
+	// lblTamanho.TextStyle = fyne.TextStyle{Bold: true}
+	// lblTamanho.Resize(fyne.NewSize(100, 30))
+	// lblTamanho.Move(fyne.NewPos(cboFormat.Size().Width+17, cv.Position().Y+300))
+	// txtTamanhoWidth := widget.NewEntry()
+	// txtTamanhoWidth.Resize(fyne.NewSize(50, 38))
+	// txtTamanhoWidth.Move(fyne.NewPos(cboFormat.Size().Width+24, lblTamanho.Position().Y+37))
+	// lblX := widget.NewLabel("x")
+	// lblX.Resize(fyne.NewSize(50, 38))
+	// lblX.Move(fyne.NewPos(txtTamanhoWidth.Position().X+49, lblTamanho.Position().Y+37))
+	// txtTamanhoHeight := widget.NewEntry()
+	// txtTamanhoHeight.Resize(fyne.NewSize(50,38))
+	// txtTamanhoHeight.Move(fyne.NewPos(lblX.Position().X+24, lblTamanho.Position().Y+37))
+
 	btnConvert := widget.NewButton("Gerar", func() {
 		s := &sDados{}
 		s.imagens = cv.ListAll()
 		s.format = cboFormat.Text
 		s.showConvert(a)
 	})
+
 
 	btnConvert.Resize(fyne.NewSize(157, 59))
 	btnConvert.Move(fyne.NewPos(7, cboFormat.Position().Y+67))
@@ -140,8 +162,13 @@ func main() {
 		btnRemoveFile,
 		btnRemoveFiles,
 		cv,
-		lblFormat,
 		cboFormat,
+		lblQualidade,
+		txtQualidade,
+		// lblTamanho,
+		// txtTamanhoWidth,
+		// lblX,
+		// txtTamanhoHeight,
 		btnConvert,
 	)
 	w.SetContent(layout)
