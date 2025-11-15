@@ -3,13 +3,18 @@ module mugomes/miconvertimage
 go 1.25.3
 
 require (
-	fyne.io/fyne/v2 v2.7.0
+	fyne.io/fyne/v2 v2.7.1
 	github.com/chai2010/webp v1.4.0
-	github.com/mugomes/mgcolumnview v0.0.0-20251110191248-c191e750e12e
+	github.com/mugomes/mgcolumnview v0.0.0-20251113191724-e128539c84e6
+	github.com/mugomes/mgdialogopenfile v0.0.0-20251113210545-04ea647b4387
+	github.com/mugomes/mgnumericentry v1.0.0
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
 )
 
 replace github.com/mugomes/mgcolumnview => ../mgcolumnview
+
+replace github.com/mugomes/mgdialogopenfile => ../mgdialogopenfile
+replace github.com/mugomes/mgnumericentry => ../componentes/mgnumericentry
 
 require (
 	fyne.io/systray v1.11.1-0.20250603113521-ca66a66d8b58 // indirect
