@@ -17,6 +17,10 @@ import (
 )
 
 func ConvertImage(inputPath, outputPath string, format string, width, height uint, resizeOnlyOne bool) (string, string) {
+	if format == "" {
+		format = "webp"
+		outputPath = fmt.Sprintf("%s%s", outputPath, format)
+	}
 	// Abre arquivo de entrada
 	inFile, err := os.Open(inputPath)
 	if err != nil {
