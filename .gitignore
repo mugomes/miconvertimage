@@ -1,2 +1,8 @@
 # bin
 bin/
+
+# fyne-cross
+fyne-cross/
+
+# compile.sh
+compile.sh
