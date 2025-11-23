@@ -1,4 +1,4 @@
-// Copyright (C) 2025 Murilo Gomes Julio
+// Copyright (C) 2024-2025 Murilo Gomes Julio
 // SPDX-License-Identifier: GPL-2.0-only
 
 // Site: https://mugomes.github.io
@@ -10,6 +10,7 @@ import (
 	"image"
 	"image/jpeg"
 	"image/png"
+
 	"os"
 
 	"github.com/chai2010/webp"
@@ -24,16 +25,16 @@ func ConvertImage(inputPath, outputPath string, format string, width, height uin
 	// Abre arquivo de entrada
 	inFile, err := os.Open(inputPath)
 	if err != nil {
-		fmt.Printf("erro ao abrir imagem de entrada: %v", err)
-		return "", "Não possível abrir a imagem!"
+		fmt.Print(T("error opening input image: %v", err))
+		return "", T("Cannot open image!")
 	}
 	defer inFile.Close()
 
 	// Decodifica qualquer formato suportado
 	img, _, err := image.Decode(inFile)
 	if err != nil {
-		fmt.Printf("erro ao decodificar imagem: %v", err)
-		return "", "Erro ao decodificar a imagem!"
+		fmt.Print(T("error decoding image: %v", err))
+		return "", T("Error decoding the image!")
 	}
 
 	// Se resizeOnlyOne for verdadeiro, ajusta apenas a largura ou altura
@@ -56,8 +57,8 @@ func ConvertImage(inputPath, outputPath string, format string, width, height uin
 	// Cria arquivo de saída
 	outFile, err := os.Create(outputPath)
 	if err != nil {
-		fmt.Printf("erro ao criar arquivo de saída: %v", err)
-		return "", "Erro ao criar a imagem!"
+		fmt.Print(T("error creating output file: %v", err))
+		return "", T("Error creating image!")
 	}
 	defer outFile.Close()
 
@@ -78,14 +79,14 @@ func ConvertImage(inputPath, outputPath string, format string, width, height uin
 		err = webp.Encode(outFile, img, options)
 
 	default:
-		fmt.Printf("formato de saída não suportado: %s", format)
-		return "", "Formato de saída não suportado!"
+		fmt.Print(T("unsupported output format: %s", format))
+		return "", T("Output format not supported!")
 	}
 
 	if err != nil {
-		fmt.Printf("erro ao converter: %v", err)
-		return "", "Erro ao converter"
+		fmt.Print(T("error when converting: %v", err))
+		return "", T("Error converting")
 	}
 
-	return "Arquivo Convertido", ""
+	return T("Converted File"), ""
 }
