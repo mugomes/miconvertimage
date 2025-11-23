@@ -47,6 +47,10 @@ github.com/jsummers/gobmp v0.0.0-20230614200233-a9de23ed2e25 h1:YLvr1eE6cdCqjOe9
 github.com/jsummers/gobmp v0.0.0-20230614200233-a9de23ed2e25/go.mod h1:kLgvv7o6UM+0QSf0QjAse3wReFDsb9qbZJdfexWlrQw=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
 github.com/kr/text v0.2.0/go.mod h1:eLer722TekiGuMkidMxC/pM04lWEeraHUUmBw8l2grE=
+github.com/mugomes/mgcolumnview v1.0.2 h1:rhKn8zmA7wNBSua0uP1NxTSWjoXB/mcqM2Wax9iiv8Y=
+github.com/mugomes/mgcolumnview v1.0.2/go.mod h1:ec0sdo1cFK3rV+TfU6bqt7S2DxN0SVqhXQqxNnDr92E=
+github.com/mugomes/mgdialogbox v1.0.0 h1:6MXmupaYYkriY9vBNZeqXqRryKIsggZ6AkR1PWppg/8=
+github.com/mugomes/mgdialogbox v1.0.0/go.mod h1:fTwLf3YmBGWZXuy6nTKKfT4e88DI8mrKQuBB7ocfVo8=
 github.com/mugomes/mgnumericentry v1.0.0 h1:xeFYvr2x8T/6YRhcHEzStQtFKpqUfT8LmsL59c40xWk=
 github.com/mugomes/mgnumericentry v1.0.0/go.mod h1:g9o3qu1XxvUB3a99ql7TqAqrwpCEU+k54osBh8fZRlU=
 github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 h1:zYyBkD/k9seD2A7fsi6Oo2LfFZAehjjQMERAvZLEDnQ=
