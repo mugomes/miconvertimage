@@ -1,4 +1,4 @@
-// Copyright (C) 2025 Murilo Gomes Julio
+// Copyright (C) 2024-2025 Murilo Gomes Julio
 // SPDX-License-Identifier: GPL-2.0-only
 
 // Site: https://mugomes.github.io
@@ -16,7 +16,7 @@ import (
 )
 
 func showAbout(a fyne.App) {
-	w := a.NewWindow("Sobre")
+	w := a.NewWindow("About")
 	w.Resize(fyne.NewSize(597, 470))
 	w.CenterOnScreen()
 	w.SetFixedSize(true)
@@ -26,7 +26,7 @@ func showAbout(a fyne.App) {
 	lblSoftware.TextStyle.Bold = true
 	lblSoftware.Move(fyne.NewPos(9, 7))
 
-	lblDesenvolvedor1 := widget.NewLabel("Desenvolvido por:")
+	lblDesenvolvedor1 := widget.NewLabel("Developed by:")
 	lblDesenvolvedor1.TextStyle = fyne.TextStyle{Bold: true}
 	lblDesenvolvedor1.Move(fyne.NewPos(0, lblSoftware.MinSize().Height+10))
 
@@ -58,7 +58,7 @@ func showAbout(a fyne.App) {
 	MiConvertImage is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 	`)
 	txtLicense.Wrapping = fyne.TextWrapWord
-	
+
 	vBoxLicense := container.NewVScroll(txtLicense)
 	vBoxLicense.Move(fyne.NewPos(0, lblLicense1.Position().Y+37))
 	vBoxLicense.Resize(fyne.NewSize(597, 257))
