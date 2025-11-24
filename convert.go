@@ -7,7 +7,7 @@ package main
 
 import (
 	"fmt"
-	"mugomes/miconvertimage/modules"
+	m "mugomes/miconvertimage/modules"
 	"path/filepath"
 	"strings"
 
@@ -18,21 +18,23 @@ import (
 )
 
 func (s *sDados) showConvert(a fyne.App) {
-	w := a.NewWindow("Converter Imagem")
+	m.LoadTranslations()
+
+	w := a.NewWindow(m.T("Convert Image"))
 	w.CenterOnScreen()
 	w.Resize(fyne.NewSize(800, 600))
 	w.SetFixedSize(true)
 
-	lblInfo := widget.NewLabel("Informação")
+	lblInfo := widget.NewLabel(m.T("Information"))
 	lblInfo.TextStyle = fyne.TextStyle{Bold: true}
 	lblInfo.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 30))
 	lblInfo.Move(fyne.NewPos(7, 7))
 
-	lblStatus := widget.NewLabel("Convertendo imagens...")
+	lblStatus := widget.NewLabel(m.T("Converting images..."))
 	lblStatus.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 30))
 	lblStatus.Move(fyne.NewPos(7, lblInfo.Position().Y+34))
 
-	sHeader := []string{"Arquivo", "Informação"}
+	sHeader := []string{m.T("File"), m.T("Information")}
 	sWidths := []float32{500, 200}
 	lstFiles := mgcolumnview.NewColumnView(sHeader, sWidths, false)
 	lstFiles.Resize(fyne.NewSize(w.Canvas().Size().Width-7, w.Canvas().Size().Height-7))
@@ -51,7 +53,7 @@ func (s *sDados) showConvert(a fyne.App) {
 			//sFile := filepath.Base(row[0])
 			sExtension := filepath.Ext(row[0])
 
-			sInfo, msgError := modules.ConvertImage(row[0], strings.Replace(row[0], sExtension, fmt.Sprintf(".%s", s.format), 1), s.format, s.qualidade, uint(s.tamanhoWidth), uint(s.tamanhoHeight), s.proporcao)
+			sInfo, msgError := m.ConvertImage(row[0], strings.Replace(row[0], sExtension, fmt.Sprintf(".%s", s.format), 1), s.format, s.qualidade, uint(s.tamanhoWidth), uint(s.tamanhoHeight), s.proporcao)
 
 			fyne.Do(func() {
 				if sInfo == "" {
@@ -65,7 +67,7 @@ func (s *sDados) showConvert(a fyne.App) {
 		}
 
 		fyne.Do(func() {
-			lblStatus.Text = "Concluído"
+			lblStatus.Text = m.T("Completed")
 			lblStatus.Refresh()
 		})
 	}()

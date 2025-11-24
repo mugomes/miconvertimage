@@ -89,7 +89,7 @@ func main() {
 		}),
 		fyne.NewMenuItemSeparator(),
 		fyne.NewMenuItem(m.T("Support MiConvertImage"), func() {
-			url, _ := url.Parse("https://mugomes.github.io/apoie.html")
+			url, _ := url.Parse("https://www.mugomes.com.br/apoie.html")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
@@ -143,7 +143,7 @@ func main() {
 	cv.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 300))
 	cv.Move(fyne.NewPos(0, btnAddFile.Position().Y+37))
 
-	lblFormat := widget.NewLabel(m.T("Formats"))
+	lblFormat := widget.NewLabel(m.T("Format"))
 	lblFormat.TextStyle = fyne.TextStyle{Bold: true}
 	lblFormat.Resize(fyne.NewSize(137, 30))
 	lblFormat.Move(fyne.NewPos(0, cv.Position().Y+300))
@@ -151,6 +151,7 @@ func main() {
 	cboFormat := widget.NewSelectEntry(sFormats)
 	cboFormat.Resize(fyne.NewSize(137, 38))
 	cboFormat.Move(fyne.NewPos(7, lblFormat.Position().Y+37))
+	cboFormat.Entry.Disable()
 
 	lblQualidade := widget.NewLabel(m.T("Quality"))
 	lblQualidade.TextStyle = fyne.TextStyle{Bold: true}
@@ -162,11 +163,11 @@ func main() {
 	lblTamanho := widget.NewLabel(m.T("Size"))
 	lblTamanho.TextStyle = fyne.TextStyle{Bold: true}
 	lblTamanho.Resize(fyne.NewSize(100, 30))
-	lblTamanho.Move(fyne.NewPos(cboFormat.Size().Width+82, cv.Position().Y+300))
+	lblTamanho.Move(fyne.NewPos(cboFormat.Size().Width+102, cv.Position().Y+300))
 	txtTamanhoWidth := widget.NewEntry()
 	txtTamanhoWidth.SetText("0")
 	txtTamanhoWidth.Resize(fyne.NewSize(50, 38))
-	txtTamanhoWidth.Move(fyne.NewPos(cboFormat.Size().Width+89, lblTamanho.Position().Y+37))
+	txtTamanhoWidth.Move(fyne.NewPos(cboFormat.Size().Width+109, lblTamanho.Position().Y+37))
 	lblX := widget.NewLabel("x")
 	lblX.Resize(fyne.NewSize(50, 38))
 	lblX.Move(fyne.NewPos(txtTamanhoWidth.Position().X+49, lblTamanho.Position().Y+37))
@@ -175,15 +176,16 @@ func main() {
 	txtTamanhoHeight.Resize(fyne.NewSize(50,38))
 	txtTamanhoHeight.Move(fyne.NewPos(lblX.Position().X+24, lblTamanho.Position().Y+37))
 
-	lblProporcao := widget.NewLabel("Proporção")
+	lblProporcao := widget.NewLabel(m.T("Proportion"))
 	lblProporcao.Move(fyne.NewPos(txtTamanhoHeight.Position().X+52, cv.Position().Y+300))
-	sProporcao := []string{"Manter", "Não Manter"}
+	sProporcao := []string{m.T("Keep"), m.T("Do not keep")}
 	cboProporcao := widget.NewSelectEntry(sProporcao)
-	cboProporcao.SetText("Manter")
+	cboProporcao.SetText(m.T("Keep"))
 	cboProporcao.Resize(fyne.NewSize(137, 38))
 	cboProporcao.Move(fyne.NewPos(txtTamanhoHeight.Position().X+59, lblProporcao.Position().Y+37))
+	cboProporcao.Entry.Disable()
 
-	btnConvert := widget.NewButton(m.T("Generate"), func() {
+	btnConvert := widget.NewButton(m.T("Convert"), func() {
 		s := &sDados{}
 		s.imagens = cv.ListAll()
 		s.format = cboFormat.Text
@@ -196,7 +198,7 @@ func main() {
 		sTamanhoHeight, _ := strconv.Atoi(txtTamanhoHeight.Text)
 		s.tamanhoHeight = sTamanhoHeight
 
-		if cboProporcao.Text == "Manter" {
+		if cboProporcao.Text == m.T("Keep") {
 			s.proporcao = true
 		} else {
 			s.proporcao = false
@@ -212,6 +214,7 @@ func main() {
 		btnRemoveFile,
 		btnRemoveFiles,
 		cv,
+		lblFormat,
 		cboFormat,
 		lblQualidade,
 		txtQualidade,

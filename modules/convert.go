@@ -85,7 +85,7 @@ func ConvertImage(inputPath, outputPath string, format string, quality int, widt
 
 	if err != nil {
 		fmt.Print(T("error when converting: %v", err))
-		return "", T("Error converting")
+		return "", T("Error converting!")
 	}
 
 	return T("Converted File"), ""
