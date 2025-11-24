@@ -107,7 +107,7 @@ func main() {
 	cv := mgcolumnview.NewColumnView(headers, sWidths, true)
 
 	btnAddFile := widget.NewButton(m.T("Add Image"), func() {
-		mgdialogbox.NewOpenFile(a, m.T("Open File"), []string{".webp", ".jpg", ".png"}, true, func(filenames []string) {
+		mgdialogbox.NewOpenFile(a, m.T("Open File"), []string{".webp", ".jpg", ".jpeg", ".png"}, true, func(filenames []string) {
 			for _, filename := range filenames {
 				ext := filepath.Ext(filename)
 				if ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".webp" {
@@ -151,6 +151,7 @@ func main() {
 	cboFormat := widget.NewSelectEntry(sFormats)
 	cboFormat.Resize(fyne.NewSize(137, 38))
 	cboFormat.Move(fyne.NewPos(7, lblFormat.Position().Y+37))
+	cboFormat.SetText("webp")
 	cboFormat.Entry.Disable()
 
 	lblQualidade := widget.NewLabel(m.T("Quality"))
