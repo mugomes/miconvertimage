@@ -7,8 +7,8 @@ package modules
 
 import (
 	"fmt"
-	"os"
-	"strings"
+	"runtime"
+	"mugomes/miconvertimage/locale"
 )
 
 type Translations map[string]string
@@ -16,27 +16,16 @@ type Translations map[string]string
 var tr Translations
 
 // Detecta o idioma do sistema e retorna apenas o código base (pt, en, es, etc.)
-func GetSystemLanguage() string {
-	lang := os.Getenv("LANG")
-	if lang == "" {
-		lang = os.Getenv("LC_ALL")
-	}
-	if lang == "" {
-		lang = os.Getenv("LC_MESSAGES")
-	}
-	if lang == "" {
-		return "en" // fallback padrão
-	}
-
-	// Exemplo: "pt_BR.UTF-8" → "pt"
-	parts := strings.Split(lang, ".")
-	base := parts[0]
-	baseParts := strings.Split(base, "_")
-	return strings.ToLower(baseParts[0])
-}
-
 func LoadTranslations() {
-	if GetSystemLanguage() == "pt" {
+	platform := runtime.GOOS
+	var lang string
+	if platform == "linux" {
+		lang = locale.Current.GetSystemLanguage()
+	} else {
+		lang = locale.Current.GetSystemLanguage()
+	}
+
+	if lang == "pt" {
 		valor := make(map[string]string)
 		valor["About"] = "Sobre"
 		valor["Check Update"] = "Verificar Atualização"
