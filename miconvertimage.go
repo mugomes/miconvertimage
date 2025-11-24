@@ -11,6 +11,7 @@ import (
 	m "mugomes/miconvertimage/modules"
 	"net/url"
 	"path/filepath"
+	"strconv"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -63,6 +64,10 @@ func (m myDarkTheme) Size(n fyne.ThemeSizeName) float32 {
 type sDados struct {
 	imagens [][]string
 	format  string
+	qualidade int
+	tamanhoWidth int
+	tamanhoHeight int
+	proporcao bool
 }
 
 func main() {
@@ -150,7 +155,7 @@ func main() {
 	lblQualidade := widget.NewLabel(m.T("Quality"))
 	lblQualidade.TextStyle = fyne.TextStyle{Bold: true}
 	lblQualidade.Move(fyne.NewPos(cboFormat.Size().Width+12, cv.Position().Y+300))
-	txtQualidade := mgnumericentry.NewMGNumericEntryWithButtons(0, 100, 90)
+	txtQualidade, vQualidade := mgnumericentry.NewMGNumericEntryWithButtons(0, 100, 90)
 	txtQualidade.Resize(fyne.NewSize(100, 38))
 	txtQualidade.Move(fyne.NewPos(cboFormat.Size().Width+17, lblQualidade.Position().Y+37))
 
@@ -159,12 +164,14 @@ func main() {
 	lblTamanho.Resize(fyne.NewSize(100, 30))
 	lblTamanho.Move(fyne.NewPos(cboFormat.Size().Width+82, cv.Position().Y+300))
 	txtTamanhoWidth := widget.NewEntry()
+	txtTamanhoWidth.SetText("0")
 	txtTamanhoWidth.Resize(fyne.NewSize(50, 38))
 	txtTamanhoWidth.Move(fyne.NewPos(cboFormat.Size().Width+89, lblTamanho.Position().Y+37))
 	lblX := widget.NewLabel("x")
 	lblX.Resize(fyne.NewSize(50, 38))
 	lblX.Move(fyne.NewPos(txtTamanhoWidth.Position().X+49, lblTamanho.Position().Y+37))
 	txtTamanhoHeight := widget.NewEntry()
+	txtTamanhoHeight.SetText("0")
 	txtTamanhoHeight.Resize(fyne.NewSize(50,38))
 	txtTamanhoHeight.Move(fyne.NewPos(lblX.Position().X+24, lblTamanho.Position().Y+37))
 
@@ -180,6 +187,20 @@ func main() {
 		s := &sDados{}
 		s.imagens = cv.ListAll()
 		s.format = cboFormat.Text
+
+		s.qualidade = vQualidade.GetValue()
+
+		sTamanhoWidth, _ := strconv.Atoi(txtTamanhoWidth.Text)
+		s.tamanhoWidth = sTamanhoWidth
+
+		sTamanhoHeight, _ := strconv.Atoi(txtTamanhoHeight.Text)
+		s.tamanhoHeight = sTamanhoHeight
+
+		if cboProporcao.Text == "Manter" {
+			s.proporcao = true
+		} else {
+			s.proporcao = false
+		}
 		s.showConvert(a)
 	})
 
