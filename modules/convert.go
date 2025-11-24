@@ -17,7 +17,7 @@ import (
 	"github.com/nfnt/resize"
 )
 
-func ConvertImage(inputPath, outputPath string, format string, width, height uint, resizeOnlyOne bool) (string, string) {
+func ConvertImage(inputPath, outputPath string, format string, quality int, width, height uint, resizeOnlyOne bool) (string, string) {
 	if format == "" {
 		format = "webp"
 		outputPath = fmt.Sprintf("%s%s", outputPath, format)
@@ -66,7 +66,7 @@ func ConvertImage(inputPath, outputPath string, format string, width, height uin
 	switch format {
 	case "jpg", "jpeg":
 		// Salva como JPG
-		options := &jpeg.Options{Quality: 90}
+		options := &jpeg.Options{Quality: quality}
 		err = jpeg.Encode(outFile, img, options)
 
 	case "png":
@@ -75,7 +75,7 @@ func ConvertImage(inputPath, outputPath string, format string, width, height uin
 
 	case "webp":
 		// Salva como WEBP
-		options := &webp.Options{Quality: 90}
+		options := &webp.Options{Quality: float32(quality)}
 		err = webp.Encode(outFile, img, options)
 
 	default:
