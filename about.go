@@ -37,8 +37,8 @@ func showAbout(a fyne.App) {
 	lblSite1.TextStyle = fyne.TextStyle{Bold: true}
 	lblSite1.Move(fyne.NewPos(0, lblDesenvolvedor1.Position().Y+37))
 
-	sURL, _ := url.Parse("https://mugomes.github.io")
-	lblSite2 := widget.NewHyperlink("https://mugomes.github.io", sURL)
+	sURL, _ := url.Parse("https://www.mugomes.com.br")
+	lblSite2 := widget.NewHyperlink("https://www.mugomes.com.br", sURL)
 	lblSite2.Move(fyne.NewPos(lblSite1.MinSize().Width-10, lblDesenvolvedor2.Position().Y+37))
 
 	lblCopyright1 := widget.NewLabel("Copyright (C) 2024-2025 Murilo Gomes Julio")
