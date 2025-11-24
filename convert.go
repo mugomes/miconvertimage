@@ -50,7 +50,8 @@ func (s *sDados) showConvert(a fyne.App) {
 		for _, row := range s.imagens {
 			//sFile := filepath.Base(row[0])
 			sExtension := filepath.Ext(row[0])
-			sInfo, msgError := modules.ConvertImage(row[0], strings.Replace(row[0], sExtension, fmt.Sprintf(".%s", s.format), 1), s.format, 0, 0, false)
+
+			sInfo, msgError := modules.ConvertImage(row[0], strings.Replace(row[0], sExtension, fmt.Sprintf(".%s", s.format), 1), s.format, s.qualidade, uint(s.tamanhoWidth), uint(s.tamanhoHeight), s.proporcao)
 
 			fyne.Do(func() {
 				if sInfo == "" {
