@@ -8,11 +8,10 @@ Converts images into different formats.
 
 ## System Requirement
 
-### Linux
-
- - Ubuntu 24.04 or higher
+ - Ubuntu 24.04 or higher (64 bits)
+ - Windows 10 or higher (64 bits)
  - Graphics: GPU with OpenGL support (required for 3D acceleration)
-
+ 
 ## Support
 
 - GitHub: https://github.com/sponsors/mugomes
