@@ -1,7 +1,7 @@
 // Copyright (C) 2024-2025 Murilo Gomes Julio
 // SPDX-License-Identifier: GPL-2.0-only
 
-// Site: https://mugomes.github.io
+// Site: https://www.mugomes.com.br
 
 package main
 
@@ -16,16 +16,17 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
 
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/mugomes/mgcolumnview"
 	"github.com/mugomes/mgdialogbox"
 	"github.com/mugomes/mgnumericentry"
+	"github.com/mugomes/mgsmartflow"
 )
 
-const VERSION_APP string = "2.0.0"
+const VERSION_APP string = "2.1.0"
 
 type myDarkTheme struct{}
 
@@ -62,12 +63,12 @@ func (m myDarkTheme) Size(n fyne.ThemeSizeName) float32 {
 }
 
 type sDados struct {
-	imagens [][]string
-	format  string
-	qualidade int
-	tamanhoWidth int
+	imagens       [][]string
+	format        string
+	qualidade     int
+	tamanhoWidth  int
 	tamanhoHeight int
-	proporcao bool
+	proporcao     bool
 }
 
 func main() {
@@ -77,19 +78,19 @@ func main() {
 	a := app.NewWithID("br.com.mugomes.miconvertimage")
 	a.SetIcon(sIcon)
 	w := a.NewWindow("MiConvertImage")
-	w.Resize(fyne.NewSize(800, 600))
+	w.Resize(fyne.NewSize(800, 559))
 	w.CenterOnScreen()
 	w.SetFixedSize(true)
 	a.Settings().SetTheme(&myDarkTheme{})
 
 	mnuAbout := fyne.NewMenu(m.T("About"),
 		fyne.NewMenuItem(m.T("Check Update"), func() {
-			url, _ := url.Parse("https://github.com/mugomes/miconvertimage/releases")
+			url, _ := url.Parse("https://www.mugomes.com.br/p/miconvertimage.html")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
 		fyne.NewMenuItem(m.T("Support MiConvertImage"), func() {
-			url, _ := url.Parse("https://www.mugomes.com.br/apoie.html")
+			url, _ := url.Parse("https://www.mugomes.com.br/p/apoie.html")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
@@ -99,6 +100,8 @@ func main() {
 	)
 
 	w.SetMainMenu(fyne.NewMainMenu(mnuAbout))
+
+	flow := mgsmartflow.New()
 
 	headers := []string{m.T("File")}
 	sWidths := []float32{30, w.Canvas().Size().Width - 7}
@@ -119,73 +122,69 @@ func main() {
 						filename,
 					})
 				} else {
-					dialog.ShowInformation("MiCheckHash", m.T("Invalid format! Only PNG, JPG, or WEBP files are accepted."), w)
+					mgdialogbox.NewAlert(a, "MiConvertImage", m.T("Invalid format! Only PNG, JPG, or WEBP files are accepted."), true, "Ok")
 				}
 
 			}
 		})
 	})
-	btnAddFile.Resize(fyne.NewSize(137, 30))
-	btnAddFile.Move(fyne.NewPos(7, 7))
 
 	btnRemoveFile := widget.NewButton(m.T("Remove Selected"), func() {
 		cv.RemoveSelected()
 	})
-	btnRemoveFile.Resize(fyne.NewSize(197, 30))
-	btnRemoveFile.Move(fyne.NewPos(btnAddFile.Size().Width+19, 7))
 
 	btnRemoveFiles := widget.NewButton(m.T("Remove All"), func() {
 		cv.RemoveAll()
 	})
 	btnRemoveFiles.Resize(fyne.NewSize(159, 30))
-	btnRemoveFiles.Move(fyne.NewPos(btnRemoveFile.Size().Width+167, 7))
 
-	cv.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 300))
-	cv.Move(fyne.NewPos(0, btnAddFile.Position().Y+37))
+	flow.AddColumn(btnAddFile, btnRemoveFile, btnRemoveFiles)
+
+	flow.AddRow(cv)
+
+	flow.SetResize(cv, fyne.NewSize(w.Canvas().Size().Width - 7, 300))
 
 	lblFormat := widget.NewLabel(m.T("Format"))
 	lblFormat.TextStyle = fyne.TextStyle{Bold: true}
-	lblFormat.Resize(fyne.NewSize(137, 30))
-	lblFormat.Move(fyne.NewPos(0, cv.Position().Y+300))
 	sFormats := []string{"webp", "jpg", "png"}
 	cboFormat := widget.NewSelectEntry(sFormats)
-	cboFormat.Resize(fyne.NewSize(137, 38))
-	cboFormat.Move(fyne.NewPos(7, lblFormat.Position().Y+37))
 	cboFormat.SetText("webp")
 	cboFormat.Entry.Disable()
+	ctnFormat := container.NewVBox(lblFormat, cboFormat)
 
 	lblQualidade := widget.NewLabel(m.T("Quality"))
 	lblQualidade.TextStyle = fyne.TextStyle{Bold: true}
-	lblQualidade.Move(fyne.NewPos(cboFormat.Size().Width+12, cv.Position().Y+300))
 	txtQualidade, vQualidade := mgnumericentry.NewMGNumericEntryWithButtons(0, 100, 90)
-	txtQualidade.Resize(fyne.NewSize(100, 38))
-	txtQualidade.Move(fyne.NewPos(cboFormat.Size().Width+17, lblQualidade.Position().Y+37))
+	cmpQualidade := container.NewHBox(widget.NewLabel(""), txtQualidade)
+	ctnQualidade := container.NewVBox(lblQualidade, cmpQualidade)
 
 	lblTamanho := widget.NewLabel(m.T("Size"))
 	lblTamanho.TextStyle = fyne.TextStyle{Bold: true}
-	lblTamanho.Resize(fyne.NewSize(100, 30))
-	lblTamanho.Move(fyne.NewPos(cboFormat.Size().Width+102, cv.Position().Y+300))
 	txtTamanhoWidth := widget.NewEntry()
 	txtTamanhoWidth.SetText("0")
-	txtTamanhoWidth.Resize(fyne.NewSize(50, 38))
-	txtTamanhoWidth.Move(fyne.NewPos(cboFormat.Size().Width+109, lblTamanho.Position().Y+37))
 	lblX := widget.NewLabel("x")
-	lblX.Resize(fyne.NewSize(50, 38))
-	lblX.Move(fyne.NewPos(txtTamanhoWidth.Position().X+49, lblTamanho.Position().Y+37))
 	txtTamanhoHeight := widget.NewEntry()
 	txtTamanhoHeight.SetText("0")
-	txtTamanhoHeight.Resize(fyne.NewSize(50,38))
-	txtTamanhoHeight.Move(fyne.NewPos(lblX.Position().X+24, lblTamanho.Position().Y+37))
-
+	ctnTamanho := container.NewVBox(
+		lblTamanho,
+		container.NewHBox(
+			txtTamanhoWidth,
+			lblX,
+			txtTamanhoHeight,
+		),
+	)
+	
 	lblProporcao := widget.NewLabel(m.T("Proportion"))
-	lblProporcao.Move(fyne.NewPos(txtTamanhoHeight.Position().X+52, cv.Position().Y+300))
 	sProporcao := []string{m.T("Keep"), m.T("Do not keep")}
 	cboProporcao := widget.NewSelectEntry(sProporcao)
 	cboProporcao.SetText(m.T("Keep"))
-	cboProporcao.Resize(fyne.NewSize(137, 38))
-	cboProporcao.Move(fyne.NewPos(txtTamanhoHeight.Position().X+59, lblProporcao.Position().Y+37))
 	cboProporcao.Entry.Disable()
+	ctnProporcao := container.NewVBox(lblProporcao, cboProporcao)
 
+	flow.AddColumn(ctnFormat, ctnQualidade, ctnTamanho, ctnProporcao)
+
+	flow.SetResize(ctnQualidade, fyne.NewSize(100, 38))
+	flow.SetResize(ctnTamanho, fyne.NewSize(117, 38))
 	btnConvert := widget.NewButton(m.T("Convert"), func() {
 		s := &sDados{}
 		s.imagens = cv.ListAll()
@@ -207,26 +206,13 @@ func main() {
 		s.showConvert(a)
 	})
 
-	btnConvert.Resize(fyne.NewSize(157, 59))
-	btnConvert.Move(fyne.NewPos(7, cboFormat.Position().Y+67))
+	flow.SetGap(ctnTamanho, fyne.NewPos(0, 37))
 
-	layout := container.NewWithoutLayout(
-		btnAddFile,
-		btnRemoveFile,
-		btnRemoveFiles,
-		cv,
-		lblFormat,
-		cboFormat,
-		lblQualidade,
-		txtQualidade,
-		lblTamanho,
-		txtTamanhoWidth,
-		lblX,
-		txtTamanhoHeight,
-		lblProporcao,
-		cboProporcao,
+	flow.AddColumn(
+		layout.NewSpacer(),
 		btnConvert,
+		layout.NewSpacer(),
 	)
-	w.SetContent(layout)
+	w.SetContent(flow.Container)
 	w.ShowAndRun()
 }

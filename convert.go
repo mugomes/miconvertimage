@@ -12,40 +12,39 @@ import (
 	"strings"
 
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
 	"github.com/mugomes/mgcolumnview"
+	"github.com/mugomes/mgsmartflow"
 )
 
 func (s *sDados) showConvert(a fyne.App) {
 	m.LoadTranslations()
 
+	flow := mgsmartflow.New()
+
 	w := a.NewWindow(m.T("Convert Image"))
 	w.CenterOnScreen()
-	w.Resize(fyne.NewSize(800, 600))
+	w.Resize(fyne.NewSize(800, 559))
 	w.SetFixedSize(true)
 
 	lblInfo := widget.NewLabel(m.T("Information"))
 	lblInfo.TextStyle = fyne.TextStyle{Bold: true}
-	lblInfo.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 30))
-	lblInfo.Move(fyne.NewPos(7, 7))
+
+	flow.AddRow(lblInfo)
 
 	lblStatus := widget.NewLabel(m.T("Converting images..."))
-	lblStatus.Resize(fyne.NewSize(w.Canvas().Size().Width-7, 30))
-	lblStatus.Move(fyne.NewPos(7, lblInfo.Position().Y+34))
+
+	flow.AddRow(lblStatus)
 
 	sHeader := []string{m.T("File"), m.T("Information")}
 	sWidths := []float32{500, 200}
 	lstFiles := mgcolumnview.NewColumnView(sHeader, sWidths, false)
-	lstFiles.Resize(fyne.NewSize(w.Canvas().Size().Width-7, w.Canvas().Size().Height-7))
-	lstFiles.Move(fyne.NewPos(7, lblStatus.Position().Y+38))
-	sContainer := container.NewWithoutLayout(
-		lblInfo,
-		lblStatus,
-		lstFiles,
-	)
 
-	w.SetContent(sContainer)
+	flow.AddRow(lstFiles)
+
+	flow.SetResize(lstFiles, fyne.NewSize(w.Canvas().Size().Width - 7, 467))
+
+	w.SetContent(flow.Container)
 	w.Show()
 
 	go func() {
