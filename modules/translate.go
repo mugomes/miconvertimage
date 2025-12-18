@@ -5,68 +5,46 @@
 
 package modules
 
-import (
-	"fmt"
-	"runtime"
-	"mugomes/miconvertimage/locale"
-)
+import "github.com/mugomes/mglang"
 
-type Translations map[string]string
-
-var tr Translations
-
-// Detecta o idioma do sistema e retorna apenas o código base (pt, en, es, etc.)
 func LoadTranslations() {
-	platform := runtime.GOOS
-	var lang string
-	if platform == "linux" {
-		lang = locale.Current.GetSystemLanguage()
-	} else {
-		lang = locale.Current.GetSystemLanguage()
-	}
+	lang := mglang.GetLang()
 
 	if lang == "pt" {
-		valor := make(map[string]string)
-		valor["About"] = "Sobre"
-		valor["Check Update"] = "Verificar Atualização"
-		valor["Support MiConvertImage"] = "Apoie MiConvertImage"
-		valor["About MiConvertImage"] = "Sobre MiConvertImage"
-		valor["Add Image"] = "Add Imagem"
-		valor["Remove Selected"] = "Remover Selecionado"
-		valor["Remove All"] = "Remover Todos"
-		valor["Format"] = "Formato"
-		valor["Quality"] = "Qualidade"
-		valor["Size"] = "Tamanho"
-		valor["Proportion"] = "Proporção"
-		valor["Keep"] = "Manter"
-		valor["Do not keep"] = "Não Manter"
-		valor["Invalid format! Only PNG, JPG, or WEBP files are accepted."] = "Formato inválido! Somente arquivos PNG, JPG ou WEBP são aceitos."
-		valor["File"] = "Arquivo"
-		valor["Convert Image"] = "Converter Imagem"
-		valor["Information"] = "Informação"
-		valor["Converting images..."] = "Convertendo imagens..."
-		valor["Completed"] = "Concluído"
-		valor["error opening input image: %v"] = "erro ao abrir a imagem de entrada: %v"
-		valor["Cannot open image!"] = "Não foi possível abrir a imagem!"
-		valor["error decoding image: %v"] = "erro ao decodificar a imagem: %v"
-		valor["Error decoding the image!"] = "Erro ao decodificar a imagem!"
-		valor["error creating output file: %v"] = "Erro ao criar o arquivo de saída: %v"
-		valor["Error creating image!"] = "Erro ao criar a imagem!"
-		valor["unsupported output format: %s"] = "Formato de saída não suportado: %s"
-		valor["Output format not supported!"] = "Formato de saída não suportado!"
-		valor["error when converting: %v"] = "Erro ao converter: %v"
-		valor["Error converting!"] = "Erro na conversão!"
-		valor["Converted File"] = "Arquivo convertido"
-		valor["Convert"] = "Converter"
-		tr = valor
+		mglang.Set("About", "Sobre")
+		mglang.Set("Check Update", "Verificar Atualização")
+		mglang.Set("Support MiConvertImage", "Apoie MiConvertImage")
+		mglang.Set("About MiConvertImage", "Sobre MiConvertImage")
+		mglang.Set("Add Image", "Add Imagem")
+		mglang.Set("Remove Selected", "Remover Selecionado")
+		mglang.Set("Remove All", "Remover Todos")
+		mglang.Set("Format", "Formato")
+		mglang.Set("Quality", "Qualidade")
+		mglang.Set("Size", "Tamanho")
+		mglang.Set("Proportion", "Proporção")
+		mglang.Set("Keep", "Manter")
+		mglang.Set("Do not keep", "Não Manter")
+		mglang.Set("Invalid format! Only PNG, JPG, or WEBP files are accepted.", "Formato inválido! Somente arquivos PNG, JPG ou WEBP são aceitos.")
+		mglang.Set("File", "Arquivo")
+		mglang.Set("Convert Image", "Converter Imagem")
+		mglang.Set("Information", "Informação")
+		mglang.Set("Converting images...", "Convertendo imagens...")
+		mglang.Set("Completed", "Concluído")
+		mglang.Set("error opening input image: %v", "erro ao abrir a imagem de entrada: %v")
+		mglang.Set("Cannot open image!", "Não foi possível abrir a imagem!")
+		mglang.Set("error decoding image: %v", "erro ao decodificar a imagem: %v")
+		mglang.Set("Error decoding the image!", "Erro ao decodificar a imagem!")
+		mglang.Set("error creating output file: %v", "Erro ao criar o arquivo de saída: %v")
+		mglang.Set("Error creating image!", "Erro ao criar a imagem!")
+		mglang.Set("unsupported output format: %s", "Formato de saída não suportado: %s")
+		mglang.Set("Output format not supported!", "Formato de saída não suportado!")
+		mglang.Set("error when converting: %v", "Erro ao converter: %v")
+		mglang.Set("Error converting!", "Erro na conversão!")
+		mglang.Set("Converted File", "Arquivo convertido")
+		mglang.Set("Convert", "Converter")
 	}
 }
 
-// T retorna o texto traduzido com formatação opcional.
 func T(key string, args ...any) string {
-	msg, ok := tr[key]
-	if !ok {
-		msg = key // fallback se não achar
-	}
-	return fmt.Sprintf(msg, args...)
+	return mglang.T(key, args...)
 }
