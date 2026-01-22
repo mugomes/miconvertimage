@@ -1,7 +1,7 @@
-// Copyright (C) 2024-2025 Murilo Gomes Julio
+// Copyright (C) 2024-2026 Murilo Gomes Julio
 // SPDX-License-Identifier: GPL-2.0-only
 
-// Site: https://www.mugomes.com.br
+// Site: https://mugomes.github.io
 
 package main
 
@@ -39,13 +39,13 @@ func showAbout(a fyne.App) {
 	lblSite1 := widget.NewLabel("Site:")
 	lblSite1.TextStyle = fyne.TextStyle{Bold: true}
 
-	sURL, _ := url.Parse("https://www.mugomes.com.br")
-	lblSite2 := widget.NewHyperlink("https://www.mugomes.com.br", sURL)
+	sURL, _ := url.Parse("https://mugomes.github.io")
+	lblSite2 := widget.NewHyperlink("https://mugomes.github.io", sURL)
 
 	flow.AddColumn(lblSite1, lblSite2)
 	flow.SetResize(lblSite1, fyne.NewSize(34,0))
 	
-	lblCopyright1 := widget.NewLabel("Copyright (C) 2024-2025 Murilo Gomes Julio")
+	lblCopyright1 := widget.NewLabel("Copyright (C) 2024-2026 Murilo Gomes Julio")
 	lblCopyright1.TextStyle = fyne.TextStyle{Bold: true}
 	flow.AddRow(lblCopyright1)
 
