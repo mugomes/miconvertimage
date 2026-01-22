@@ -9,8 +9,8 @@ import (
 )
 
 //go:embed icon/miconvertimage.png
-var resourceMiConvertImagePngData []byte
-var resourceMiConvertImagePng = &fyne.StaticResource{
+var resourceAppIconData []byte
+var resourceAppIcon = &fyne.StaticResource{
 	StaticName:    "icon/miconvertimage.png",
-	StaticContent: resourceMiConvertImagePngData,
+	StaticContent: resourceAppIconData,
 }
