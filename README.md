@@ -15,7 +15,7 @@ Converts images into different formats.
 ## Support
 
 - GitHub: https://github.com/sponsors/mugomes
-- More: https://www.mugomes.com.br/apoie.html
+- More: https://mugomes.github.io/apoie.html
 
 ## License
 
