@@ -7,7 +7,6 @@ package main
 
 import (
 	"fmt"
-	"image/color"
 	m "mugomes/miconvertimage/modules"
 	"net/url"
 	"path/filepath"
@@ -18,7 +17,6 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 
-	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/mugomes/mgcolumnview"
 	"github.com/mugomes/mgdialogbox"
@@ -28,42 +26,8 @@ import (
 
 const VERSION_APP string = "2.1.0"
 
-type myDarkTheme struct{}
-
-func (m myDarkTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
-	// A lógica para forçar o modo escuro é retornar cores escuras.
-	// O Fyne usa estas constantes internamente:
-	switch name {
-	case theme.ColorNameBackground:
-		return color.RGBA{28, 28, 28, 255} // Fundo preto
-	case theme.ColorNameForeground:
-		return color.White // Texto branco
-	// Adicione outros casos conforme a necessidade (InputBackground, Primary, etc.)
-	default:
-		// Retorna o tema escuro padrão para as outras cores (se existirem)
-		// Aqui estamos apenas definindo as cores principais para garantir o Dark Mode
-		return theme.DefaultTheme().Color(name, theme.VariantDark)
-	}
-}
-
-// 3. Implemente os outros métodos necessários da interface fyne.Theme (usando o tema padrão)
-func (m myDarkTheme) Font(s fyne.TextStyle) fyne.Resource {
-	return theme.DefaultTheme().Font(s)
-}
-
-func (m myDarkTheme) Icon(n fyne.ThemeIconName) fyne.Resource {
-	return theme.DefaultTheme().Icon(n)
-}
-
-func (m myDarkTheme) Size(n fyne.ThemeSizeName) float32 {
-	if n == theme.SizeNameText {
-		return 16
-	}
-	return theme.DefaultTheme().Size(n)
-}
-
 type sDados struct {
-	imagens       [][]string
+	imagens       []string
 	format        string
 	qualidade     int
 	tamanhoWidth  int
@@ -142,7 +106,7 @@ func main() {
 
 	flow.AddRow(cv)
 
-	flow.SetResize(cv, fyne.NewSize(w.Canvas().Size().Width - 7, 300))
+	flow.Resize(cv, w.Canvas().Size().Width - 7, 300)
 
 	lblFormat := widget.NewLabel(m.T("Format"))
 	lblFormat.TextStyle = fyne.TextStyle{Bold: true}
@@ -183,13 +147,17 @@ func main() {
 
 	flow.AddColumn(ctnFormat, ctnQualidade, ctnTamanho, ctnProporcao)
 
-	flow.SetResize(ctnQualidade, fyne.NewSize(100, 38))
-	flow.SetResize(ctnTamanho, fyne.NewSize(117, 38))
+	flow.Resize(ctnQualidade, 100, 38)
+	flow.Resize(ctnTamanho, 117, 38)
 	btnConvert := widget.NewButton(m.T("Convert"), func() {
+		var sImagens []string
+		cvList := cv.ListAll()
+		for _, row := range cvList {
+			sImagens = append(sImagens, row.Data...)
+		}
 		s := &sDados{}
-		s.imagens = cv.ListAll()
+		s.imagens = sImagens
 		s.format = cboFormat.Text
-
 		s.qualidade = vQualidade.GetValue()
 
 		sTamanhoWidth, _ := strconv.Atoi(txtTamanhoWidth.Text)
@@ -206,7 +174,7 @@ func main() {
 		s.showConvert(a)
 	})
 
-	flow.SetGap(ctnTamanho, fyne.NewPos(0, 37))
+	flow.Gap(ctnTamanho, 0, 37)
 
 	flow.AddColumn(
 		layout.NewSpacer(),
