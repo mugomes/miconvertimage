@@ -1,7 +1,7 @@
-// Copyright (C) 2024-2025 Murilo Gomes Julio
+// Copyright (C) 2024-2026 Murilo Gomes Julio
 // SPDX-License-Identifier: GPL-2.0-only
 
-// Site: https://www.mugomes.com.br
+// Site: https://mugomes.github.io
 
 package main
 
@@ -74,7 +74,7 @@ type sDados struct {
 func main() {
 	m.LoadTranslations()
 
-	sIcon := fyne.NewStaticResource("miconvertimage.png", resourceMiConvertImagePngData)
+	sIcon := fyne.NewStaticResource("miconvertimage.png", resourceAppIconData)
 	a := app.NewWithID("br.com.mugomes.miconvertimage")
 	a.SetIcon(sIcon)
 	w := a.NewWindow("MiConvertImage")
@@ -85,12 +85,12 @@ func main() {
 
 	mnuAbout := fyne.NewMenu(m.T("About"),
 		fyne.NewMenuItem(m.T("Check Update"), func() {
-			url, _ := url.Parse("https://www.mugomes.com.br/p/miconvertimage.html")
+			url, _ := url.Parse("https://github.com/mugomes/miconvertimage/releases")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
 		fyne.NewMenuItem(m.T("Support MiConvertImage"), func() {
-			url, _ := url.Parse("https://www.mugomes.com.br/p/apoie.html")
+			url, _ := url.Parse("https://mugomes.github.io/apoie.html")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
