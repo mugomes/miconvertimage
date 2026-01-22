@@ -42,7 +42,7 @@ func (s *sDados) showConvert(a fyne.App) {
 
 	flow.AddRow(lstFiles)
 
-	flow.SetResize(lstFiles, fyne.NewSize(w.Canvas().Size().Width - 7, 467))
+	flow.Resize(lstFiles, w.Canvas().Size().Width - 7, 467)
 
 	w.SetContent(flow.Container)
 	w.Show()
@@ -50,16 +50,16 @@ func (s *sDados) showConvert(a fyne.App) {
 	go func() {
 		for _, row := range s.imagens {
 			//sFile := filepath.Base(row[0])
-			sExtension := filepath.Ext(row[0])
+			sExtension := filepath.Ext(row)
 
-			sInfo, msgError := m.ConvertImage(row[0], strings.Replace(row[0], sExtension, fmt.Sprintf(".%s", s.format), 1), s.format, s.qualidade, uint(s.tamanhoWidth), uint(s.tamanhoHeight), s.proporcao)
+			sInfo, msgError := m.ConvertImage(row, strings.Replace(row, sExtension, fmt.Sprintf(".%s", s.format), 1), s.format, s.qualidade, uint(s.tamanhoWidth), uint(s.tamanhoHeight), s.proporcao)
 
 			fyne.Do(func() {
 				if sInfo == "" {
-					i := []string{row[0], msgError}
+					i := []string{row, msgError}
 					lstFiles.AddRow(i)
 				} else {
-					i := []string{row[0], sInfo}
+					i := []string{row, sInfo}
 					lstFiles.AddRow(i)
 				}
 			})
