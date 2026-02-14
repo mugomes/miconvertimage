@@ -55,7 +55,7 @@ func showAbout(a fyne.App) {
 	lblLicense2 := widget.NewLabel("GPL-2.0-only")
 
 	flow.AddColumn(lblLicense1, lblLicense2)
-	flow.SetResize(lblLicense1, fyne.NewSize(62, 0))
+	flow.Resize(lblLicense1, 62, 0)
 
 	txtLicense := widget.NewRichTextFromMarkdown(`
 	MiConvertImage is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, only version 2 of the License.
