@@ -7,9 +7,9 @@ import (
 	"fyne.io/fyne/v2/theme"
 )
 
-type myDarkTheme struct{}
+type darkTheme struct{}
 
-func (m myDarkTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
+func (m darkTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
 	switch name {
 	case theme.ColorNameBackground:
 		return color.RGBA{28, 28, 28, 255} // Fundo preto
@@ -20,15 +20,15 @@ func (m myDarkTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) 
 	}
 }
 
-func (m myDarkTheme) Font(s fyne.TextStyle) fyne.Resource {
+func (m darkTheme) Font(s fyne.TextStyle) fyne.Resource {
 	return theme.DefaultTheme().Font(s)
 }
 
-func (m myDarkTheme) Icon(n fyne.ThemeIconName) fyne.Resource {
+func (m darkTheme) Icon(n fyne.ThemeIconName) fyne.Resource {
 	return theme.DefaultTheme().Icon(n)
 }
 
-func (m myDarkTheme) Size(n fyne.ThemeSizeName) float32 {
+func (m darkTheme) Size(n fyne.ThemeSizeName) float32 {
 	if n == theme.SizeNameText {
 		return 16
 	}
