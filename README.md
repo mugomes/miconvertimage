@@ -1,39 +1,57 @@
 # MiConvertImage
 
-> [!NOTE]
-> This repository has been migrated to Codeberg, please see: https://codeberg.org/bluice/miconvertimage
+[![License](https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-5351FB)](LICENSE.md)
 
 Converts images into different formats.
 
 ## Screenshots
 <img height="300" alt="image" src="https://github.com/user-attachments/assets/878773a9-b3f1-4e45-8095-b911cc582266" />
 
-## Support
+---
 
-- https://github.com/sponsors/bluiceoficial
+## 🧩 System Requirement
 
-## Official MiConvertImage link
+### Linux
 
-- https://github.com/bluiceoficial/miconvertimage
+ - Ubuntu 26.04 or higher
+ - Graphics: GPU with OpenGL support (required for 3D acceleration)
 
-### Official Author link
+### Windows
 
-- https://www.bluice.com.br
+- Windows 10 or higher
+- Graphics: GPU with OpenGL support (required for 3D acceleration)
 
-### Links to Third-Party Resources Used
+---
 
-- https://gambaswiki.org/website/en/main.html
+## 👤 Author
 
-## Information
+**Murilo Gomes Julio**
 
-- [Page MiConvertImage](https://www.mugomes.com.br/2025/07/miconvertimage.html)
+🔗 [https://www.profmugomes.com.br](https://www.profmugomes.com.br)
+
+📺 [https://youtube.com/@profmugomes](https://youtube.com/@profmugomes)
+
+---
 
 ## License
 
-The MiConvertImage is provided under:
+Copyright (c) 2024-2026 Murilo Gomes Julio. All Rights Reserved.
 
-[SPDX-License-Identifier: GPL-2.0-only](https://spdx.org/licenses/GPL-2.0-only.html)
+This project is licensed under the PolyForm Strict License 1.0.0.
 
-Beign under the terms of the GNU General Public License version 2 only.
+### Summary
 
-All contributions to the MiConvertImage are subject to this license.
+This software is available for noncommercial use only.
+
+You may:
+- ✔ Use the software for noncommercial purposes.
+- ✔ Inspect and study the source code.
+
+You may not:
+- ✖ Use the software for commercial purposes.
+- ✖ Modify the software.
+- ✖ Redistribute the software.
+
+See the full license terms at [LICENSE.md](LICENSE.md).
+
+This summary is provided for convenience only.
