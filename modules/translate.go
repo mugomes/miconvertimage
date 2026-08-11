@@ -1,11 +1,11 @@
-// Copyright (C) 2024-2026 Murilo Gomes Julio
-// SPDX-License-Identifier: GPL-2.0-only
+// Copyright (c) 2024-2026 Murilo Gomes Julio. All Rights Reserved.
 
-// Site: https://mugomes.github.io
+// Licensed under the PolyForm Strict License 1.0.0.
+// See LICENSE.md for details.
 
 package modules
 
-import "github.com/mugomes/mglang"
+import "github.com/profmugomes/mglang/v2"
 
 func LoadTranslations() {
 	lang := mglang.GetLang()
@@ -13,7 +13,7 @@ func LoadTranslations() {
 	if lang == "pt" {
 		mglang.Set("About", "Sobre")
 		mglang.Set("Check Update", "Verificar Atualização")
-		mglang.Set("Support MiConvertImage", "Apoie MiConvertImage")
+		mglang.Set("Buy License", "Comprar Licença")
 		mglang.Set("About MiConvertImage", "Sobre MiConvertImage")
 		mglang.Set("Add Image", "Add Imagem")
 		mglang.Set("Remove Selected", "Remover Selecionado")

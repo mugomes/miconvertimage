@@ -1,7 +1,7 @@
-// Copyright (C) 2024-2026 Murilo Gomes Julio
-// SPDX-License-Identifier: GPL-2.0-only
+// Copyright (c) 2024-2026 Murilo Gomes Julio. All Rights Reserved.
 
-// Site: https://mugomes.github.io
+// Licensed under the PolyForm Strict License 1.0.0.
+// See LICENSE.md for details.
 
 package main
 
@@ -18,13 +18,15 @@ import (
 	"fyne.io/fyne/v2/layout"
 
 	"fyne.io/fyne/v2/widget"
-	"github.com/mugomes/mgcolumnview"
-	"github.com/mugomes/mgdialogbox"
-	"github.com/mugomes/mgnumericentry"
-	"github.com/mugomes/mgsmartflow"
+	"github.com/profmugomes/mgcolumnview/v2"
+	"github.com/profmugomes/mgdialogbox/v2"
+	"github.com/profmugomes/mgnumericentry/v2"
+	"github.com/profmugomes/mgsmartflow/v2"
 )
 
-const VERSION_APP string = "2.1.0"
+const VERSION_APP string = "3.0.0"
+
+var a fyne.App
 
 type sDados struct {
 	imagens       []string
@@ -39,27 +41,27 @@ func main() {
 	m.LoadTranslations()
 
 	sIcon := fyne.NewStaticResource("miconvertimage.png", resourceAppIconData)
-	a := app.NewWithID("br.com.mugomes.miconvertimage")
+	a = app.NewWithID("br.com.mugomes.miconvertimage")
 	a.SetIcon(sIcon)
 	w := a.NewWindow("MiConvertImage")
 	w.Resize(fyne.NewSize(800, 559))
 	w.CenterOnScreen()
 	w.SetFixedSize(true)
-	a.Settings().SetTheme(&myDarkTheme{})
+	a.Settings().SetTheme(&darkTheme{})
 
 	mnuAbout := fyne.NewMenu(m.T("About"),
 		fyne.NewMenuItem(m.T("Check Update"), func() {
-			url, _ := url.Parse("https://github.com/mugomes/miconvertimage/releases")
+			url, _ := url.Parse("https://github.com/profmugomes/miconvertimage/releases")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
-		fyne.NewMenuItem(m.T("Support MiConvertImage"), func() {
-			url, _ := url.Parse("https://mugomes.github.io/apoie.html")
+		fyne.NewMenuItem(m.T("Buy License"), func() {
+			url, _ := url.Parse("https://www.profmugomes.com.br/#contato")
 			a.OpenURL(url)
 		}),
 		fyne.NewMenuItemSeparator(),
 		fyne.NewMenuItem(m.T("About MiConvertImage"), func() {
-			showAbout(a)
+			showAbout()
 		}),
 	)
 
@@ -86,7 +88,7 @@ func main() {
 						filename,
 					})
 				} else {
-					mgdialogbox.NewAlert(a, "MiConvertImage", m.T("Invalid format! Only PNG, JPG, or WEBP files are accepted."), true, "Ok")
+					mgdialogbox.NewAlert(a, "MiConvertImage", m.T("Invalid format! Only PNG, JPG, or WEBP files are accepted."), true, "Ok", nil)
 				}
 
 			}
@@ -106,7 +108,7 @@ func main() {
 
 	flow.AddRow(cv)
 
-	flow.Resize(cv, w.Canvas().Size().Width - 7, 300)
+	flow.Resize(cv, w.Canvas().Size().Width-7, 300)
 
 	lblFormat := widget.NewLabel(m.T("Format"))
 	lblFormat.TextStyle = fyne.TextStyle{Bold: true}
@@ -137,7 +139,7 @@ func main() {
 			txtTamanhoHeight,
 		),
 	)
-	
+
 	lblProporcao := widget.NewLabel(m.T("Proportion"))
 	sProporcao := []string{m.T("Keep"), m.T("Do not keep")}
 	cboProporcao := widget.NewSelectEntry(sProporcao)
